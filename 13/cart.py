@@ -38,10 +38,13 @@ class Cart:
             self.direction = newDirection
 
         if self.currentTrack == "+":
-            if self.nextTurn == "l":
-                self.direction
-                self.nextTurn = "f"
-            elif self.nextTurn == "f":
-                self.nextTurn = "r"
-            else:
-                self.nextTurn = "l"
+            self.getIntersectionDirection()
+            self.updateNextTurn()
+
+    def updateNextTurn(self):
+        if self.nextTurn == "l":
+            self.nextTurn = "f"
+        elif self.nextTurn == "f":
+            self.nextTurn = "r"
+        else:
+            self.nextTurn = "l"
