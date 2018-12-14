@@ -16,7 +16,9 @@ def readInput(filename):
 
     for i in range(lines):
         for j in range(columns):
-            world[i].append(f.read(1))
+            char = f.read(1)
+            if char != "\n":
+                world[i].append(char)
 
     return world
 
