@@ -1,6 +1,14 @@
 from __future__ import print_function
 from readInput import readInput
 from cart import Cart
+from PyQt4 import QtCore
+
+class EmittingStream(QtCore.QObject):
+
+    textWritten = QtCore.pyqtSignal(str)
+
+    def write(self, text):
+        self.textWritten.emit(str(text))
 
 def main():
     world = readInput("input.txt")
@@ -30,6 +38,10 @@ def main():
             if crash:
                 print("CRASH! First Crash occurred at " + str(cart.x) + ", " + str(cart.y) + " during tick " + str(loopCount) + ".")
                 break
+        for m in range(len(world)):
+            for n in range(len(world[0])):
+                print(world[m][n], end='')
+            print('\n', end='')
         carts = sortCarts(carts)
 
 
